@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.marsj.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="xyz.marsj.pojo.Users">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="face_image" jdbcType="VARCHAR" property="faceImage" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="fans_counts" jdbcType="INTEGER" property="fansCounts" />
+    <result column="follow_counts" jdbcType="INTEGER" property="followCounts" />
+    <result column="receive_like_counts" jdbcType="INTEGER" property="receiveLikeCounts" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from users
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="xyz.marsj.pojo.Users">
+    insert into users (id, username, password, 
+      face_image, nickname, fans_counts, 
+      follow_counts, receive_like_counts)
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{faceImage,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{fansCounts,jdbcType=INTEGER}, 
+      #{followCounts,jdbcType=INTEGER}, #{receiveLikeCounts,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="xyz.marsj.pojo.Users">
+    update users
+    set
+    <if test="username!=null">
+     username = #{username,jdbcType=VARCHAR}
+     </if>
+     <if test="password!=null">
+      password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="faceImage!=null">
+      face_image = #{faceImage,jdbcType=VARCHAR}
+      </if>
+      <if test="nickname!=null">
+      nickname = #{nickname,jdbcType=VARCHAR}
+      </if>
+      <if test="fansCounts!=null">
+      fans_counts = #{fansCounts,jdbcType=INTEGER}
+      </if>
+      <if test="followCounts!=null">
+      follow_counts = #{followCounts,jdbcType=INTEGER}
+      </if>
+      <if test="receiveLikeCounts!=null">
+      receive_like_counts = #{receiveLikeCounts,jdbcType=INTEGER}
+      </if>
+     
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="addReceiveLikeCount" parameterType="String">
+  	update users set receive_like_counts=receive_like_counts+1 
+  	where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <update id="reduceReceiveLikeCount" parameterType="String">
+  	update users set receive_like_counts=receive_like_counts-1 
+  	where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+    <update id="addFansCounts" parameterType="String">
+  	update users set fans_counts=fans_counts+1 
+  	where id = #{userId,jdbcType=VARCHAR}
+  </update>
+    <update id="reduceFansCounts" parameterType="String">
+  	update users set fans_counts=fans_counts-1 
+  	where id = #{userId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+    <update id="addFollowCounts" parameterType="String">
+  	update users set follow_counts=follow_counts+1 
+  	where id = #{fanId,jdbcType=VARCHAR}
+  </update>
+    <update id="reduceFollowCounts" parameterType="String">
+  	update users set follow_counts=follow_counts-1 
+  	where id = #{fanId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, username, password, face_image, nickname, fans_counts, follow_counts, 
+    receive_like_counts
+    from users
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+    <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  select id
+    from users
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+    <select id="selectByUserNameAndPwd" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, username, password, face_image, nickname, fans_counts, follow_counts, 
+    receive_like_counts
+    from users
+    where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, password, face_image, nickname, fans_counts, follow_counts, 
+    receive_like_counts
+    from users
+  </select>
+</mapper>

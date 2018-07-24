@@ -1,0 +1,9 @@
+xyz\marsj\controller\VideoController.class
+xyz\marsj\interceptor\MyInterceptor.class
+xyz\marsj\controller\RegisterLoginController.class
+xyz\marsj\Swagger2.class
+xyz\marsj\Application.class
+xyz\marsj\controller\BaseController.class
+xyz\marsj\WebMvcConfig.class
+xyz\marsj\controller\BgmController.class
+xyz\marsj\controller\UserController.class

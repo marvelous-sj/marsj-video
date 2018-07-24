@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+     <commentGenerator>
+    <property name="suppressAllComments" value="true"/>
+    <property name="suppressDate" value="true"/>
+    </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://120.79.194.248:3306/marsjFilm" driverClass="com.mysql.jdbc.Driver" password="Sj19970617!" userId="root" />
+    <javaModelGenerator targetPackage="xyz.marsj.pojo" targetProject="marsj-video-common/src/main/java" />
+    <sqlMapGenerator targetPackage="mapper" targetProject="marsj-video-common/src/main/resources" />
+    <javaClientGenerator targetPackage="xyz.marsj.mapper" targetProject="marsj-video-common/src/main/java" type="XMLMAPPER" />
+
+    <table  tableName="bgm"> </table>
+    <table  tableName="comments"> </table>
+    <table  tableName="search_records"> </table>
+    <table  tableName="users"> </table>
+    <table  tableName="users_fans"> </table>
+    <table  tableName="users_like_videos"> </table>
+    <table  tableName="users_report"> </table>
+    <table  tableName="videos"> </table>
+    
+  </context>
+  
+</generatorConfiguration>

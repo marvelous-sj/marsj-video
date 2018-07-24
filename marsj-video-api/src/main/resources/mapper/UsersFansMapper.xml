@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.marsj.mapper.UsersFansMapper">
+  <resultMap id="BaseResultMap" type="xyz.marsj.pojo.UsersFans">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="fan_id" jdbcType="VARCHAR" property="fanId" />
+  </resultMap>
+  <delete id="deleteById" parameterType="java.lang.String">
+    delete from users_fans
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and fan_id = #{fanId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="xyz.marsj.pojo.UsersFans">
+    insert into users_fans (id, user_id, fan_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{fanId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="xyz.marsj.pojo.UsersFans">
+    update users_fans
+    set user_id = #{userId,jdbcType=VARCHAR},
+      fan_id = #{fanId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, user_id, fan_id
+    from users_fans
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectUserIsFollow" resultMap="BaseResultMap">
+    select id
+    from users_fans
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and fan_id = #{fanId,jdbcType=VARCHAR}
+  </select>
+</mapper>
