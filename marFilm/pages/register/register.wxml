@@ -1,0 +1,34 @@
+<!--index.wxml-->
+<view class="container"> 
+ <view class="register-icon"> 
+ <image class="register-img" src="../images/registerLog.jpg"></image> 
+ </view> 
+ <view class="register-from"> 
+  <form bindsubmit='doRegister'>
+ <!--账号-->
+ <view class="inputView"> 
+  <image class="nameImage" src="../images/name.svg"></image> 
+  <label class="registerLab">账号</label> 
+  <input class="inputText" placeholder="请输入账号" name="username" /> 
+ </view> 
+ <view class="line"></view> 
+  
+ <!--密码-->
+ <view class="inputView"> 
+  <image class="keyImage" src="../images/password.svg"></image> 
+  <label class="registerLab">密码</label> 
+  <input class="inputText" password="true" placeholder="请输入密码" name="password" /> 
+ </view> 
+  
+ <!--按钮-->
+ <view class="registerBtnView"> 
+  <button class="registerBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" formType="submit">注册</button> 
+  <button class="returnLoginBtn" type="warn" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="backToLogin">返回登录</button> 
+ </view> 
+</form>
+ 
+  
+ 
+ </view> 
+</view>
+ 
